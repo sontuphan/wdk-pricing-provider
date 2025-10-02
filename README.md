@@ -4,13 +4,13 @@
 </a>
 </p>
 
-# ⚛️ lib-wallet-pricing-provider
+# ⚛️ wdk-pricing-provider
 
-This library is a pricing provider for the lib-wallet UI. It includes two classes: `PricingClient` and `PricingProvider`. `PricingClient` is an abstract class that must be implemented by the client. `PricingProvider` is a wrapper around `PricingClient` that provides caching for the current price.
+This library is a pricing provider for the wdk UI. It includes two classes: `PricingClient` and `PricingProvider`. `PricingClient` is an abstract class that must be implemented by the client. `PricingProvider` is a wrapper around `PricingClient` that provides caching for the current price.
 
 ## 📋 Table of Contents
 
-- [⚛️ lib-wallet-pricing-provider](#️-lib-wallet-pricing-provider)
+- [⚛️ wdk-pricing-provider](#️-wdk-pricing-provider)
   - [📋 Table of Contents](#-table-of-contents)
   - [✨ Features](#-features)
   - [🚀 Installation](#-installation)
@@ -28,15 +28,15 @@ This library is a pricing provider for the lib-wallet UI. It includes two classe
 ## 🚀 Installation
 
 ```bash
-npm install lib-wallet-pricing-provider
+npm install wdk-pricing-provider
 ```
 
 ## 💡 Quick Start
 
 ```javascript
 // Imports
-import { PricingProvider } from "lib-wallet-pricing-provider";
-import { BitfinexPricingClient } from "lib-wallet-pricing-bitfinex-http";
+import { PricingProvider } from "wdk-pricing-provider";
+import { BitfinexPricingClient } from "wdk-pricing-bitfinex-http";
 
 // Initialise the client, in this case a Bitfinex client
 const client = new BitfinexPricingClient();
@@ -63,14 +63,14 @@ const historicalPrice = await provider.getHistoricalPrice({
 
 For detailed usage examples, please check the included test files `index.test.js` and `index.integration.test.js` in this repository.
 
-This project is used in lib-wallet UI to provide client agnostic pricing functionality.
+This project is used in wdk UI to provide client agnostic pricing functionality.
 
 The following clients are available:
 
-- [Bitfinex HTTP](https://github.com/tetherto/lib-wallet-pricing-bitfinex-http)
+- [Bitfinex HTTP](https://github.com/tetherto/wdk-pricing-bitfinex-http)
 
 ## 🔗 Related Projects
 
-This project is part of the [lib-wallet](https://github.com/tetherto/lib-wallet) ecosystem. See the following projects for more information:
+This project is part of the [wdk](https://github.com/tetherto/wdk) ecosystem. See the following projects for more information:
 
-- [Lib Wallet Pricing Bitfinex HTTP](https://github.com/tetherto/lib-wallet-pricing-bitfinex-http)
+- [Lib Wallet Pricing Bitfinex HTTP](https://github.com/tetherto/wdk-pricing-bitfinex-http)
