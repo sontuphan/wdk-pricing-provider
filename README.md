@@ -10,11 +10,13 @@ This library is a pricing provider for the lib-wallet UI. It includes two classe
 
 ## 📋 Table of Contents
 
-- [Features](#features)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Usage Examples](#usage-examples)
-- [Related Projects](#related-projects)
+- [⚛️ lib-wallet-pricing-provider](#️-lib-wallet-pricing-provider)
+  - [📋 Table of Contents](#-table-of-contents)
+  - [✨ Features](#-features)
+  - [🚀 Installation](#-installation)
+  - [💡 Quick Start](#-quick-start)
+  - [🔍 Usage Examples](#-usage-examples)
+  - [🔗 Related Projects](#-related-projects)
 
 ## ✨ Features
 
@@ -42,12 +44,12 @@ const provider = new PricingProvider({
 });
 
 // Get latest price for BTCUSD. The price will be cached for 1 hour.
-const currentPrice = await provider.getLastPrice('BTC', 'USD');
+const currentPrice = await provider.getLastPrice("BTC", "USD");
 
 // Get Hitorical price for given ticker and interval
 const historicalPrice = await provider.getHistoricalPrice({
-  from: 'BTC',
-  to: 'USD',
+  from: "BTC",
+  to: "USD",
   start: 1709906400000, // Optional, Start date for historical interval
   end: 1709913600000, // Optional, End date for historical interval
 });
@@ -57,7 +59,7 @@ const historicalPrice = await provider.getHistoricalPrice({
 
 For detailed usage examples, please check the included test file `index.test.js` of this repository.
 
-This project is ued in lib-wallet UI to provide client agnostic pricing functionality.
+This project is used in lib-wallet UI to provide client agnostic pricing functionality.
 
 The following clients are available:
 
