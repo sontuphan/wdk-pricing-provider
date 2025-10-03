@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Install Bare
+        run: npm i -g bare
+
       - name: Lint code with standard
         run: yarn run lint
 
