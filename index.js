@@ -24,6 +24,7 @@
  * @typedef {Object} HistoricalPriceOptions
  * @property {number} start Start of the time range as a Unix timestamp in milliseconds
  * @property {number} end End of the time range as a Unix timestamp in milliseconds
+ * @property {string} [timeframe='1D'] Timeframe for the historical data (e.g. '1D', '1h', '1m')
  */
 
 /**
@@ -67,26 +68,16 @@ export class PricingClient {
    * @returns {Promise<number[]>}
    */
   async getMultiCurrentPrices(list) {
-    return Promise.all(
-      list.map((pair) => this.getCurrentPrice(pair.from, pair.to)),
-    );
+    throw new Error('Not implemented')
   }
 
   /**
    * Returns full price data (last price, daily change) for multiple asset pairs.
-   * Defaults to calling getCurrentPrice per pair with zeroed change fields.
-   * Override in subclasses for efficient batch fetching with full data.
    * @param {PricePair[]} list - Array of asset pairs
    * @returns {Promise<PriceData[]>}
    */
   async getMultiPriceData(list) {
-    return Promise.all(
-      list.map(async ({ from, to }) => ({
-        lastPrice: await this.getCurrentPrice(from, to),
-        dailyChange: 0,
-        dailyChangeRelative: 0,
-      })),
-    );
+    throw new Error('Not implemented')
   }
 
   /**

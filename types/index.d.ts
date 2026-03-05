@@ -1,33 +1,3 @@
-/**
- * @typedef {Object} HistoricalPriceResult
- * @property {number} timestamp - Timestamp of the price point
- * @property {number} price - Price at the given timestamp
- */
-/**
- * @typedef {Object} HistoricalPriceOptions
- * @property {number} start Start of the time range as a Unix timestamp in milliseconds
- * @property {number} end End of the time range as a Unix timestamp in milliseconds
- */
-/**
- * @typedef {Object} GetPriceOptions
- * @property {boolean} [forceRefresh=false] - Bypass cache and fetch a fresh price
- */
-/**
- * @typedef {Object} PricePair
- * @property {string} from - Source asset symbol
- * @property {string} to - Target asset symbol
- */
-/**
- * @typedef {Object} PriceData
- * @property {number} lastPrice - The last traded price
- * @property {number} dailyChange - Absolute price change over the last 24h
- * @property {number} dailyChangeRelative - Relative price change over the last 24h (multiply by 100 for percentage)
- */
-/**
- * @typedef {Object} PricingProviderConfig
- * @property {PricingClient} client - The pricing client instance
- * @property {number} [priceCacheDurationMs=3600000] - Cache duration in milliseconds, defaults to 1 hour
- */
 export class PricingClient {
     /**
      * Returns the current price of an asset pair
@@ -67,14 +37,12 @@ export class PricingProvider {
     constructor(config?: PricingProviderConfig);
     client: PricingClient;
     priceCacheDurationMs: number;
-    /** @type {Object<string, { lastPriceValue: number, lastPriceTimestamp: number }>} */
     priceCacheStore: {
         [x: string]: {
             lastPriceValue: number;
             lastPriceTimestamp: number;
         };
     };
-    /** @type {Object<string, { priceData: PriceData, lastPriceTimestamp: number }>} */
     priceDataCacheStore: {
         [x: string]: {
             priceData: PriceData;
@@ -140,6 +108,10 @@ export type HistoricalPriceOptions = {
      * End of the time range as a Unix timestamp in milliseconds
      */
     end: number;
+    /**
+     * Timeframe for the historical data (e.g. '1D', '1h', '1m'). Defaults to '1D'.
+     */
+    timeframe?: string;
 };
 export type GetPriceOptions = {
     /**
