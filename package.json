@@ -16,7 +16,7 @@
   "license": "APACHE-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tetherto/lib-wallet-pricing-provider.git"
+    "url": "git://github.com/tetherto/wdk-pricing-provider.git"
   },
   "main": "index.js",
   "scripts": {
