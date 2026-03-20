@@ -18,7 +18,7 @@ For more on the WDK project, visit [docs.wallet.tether.io](https://docs.wallet.t
 ## ⬇️ Installation
 
 ```bash
-npm install wdk-pricing-provider
+npm install @tetherto/wdk-pricing-provider
 ```
 
 ## 🚀 Quick Start
