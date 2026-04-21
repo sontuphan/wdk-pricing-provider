@@ -15,6 +15,8 @@
 
 'use strict'
 
+import FailoverProvider from '@tetherto/wdk-failover-provider'
+
 /**
  * @typedef {Object} HistoricalPriceResult
  * @property {number} timestamp - Timestamp of the price point
@@ -48,7 +50,8 @@
 
 /**
  * @typedef {Object} PricingProviderConfig
- * @property {PricingClient} client - The pricing client instance
+ * @property {PricingClient | PricingClient[]} client - An instance of a class that implements {@link PricingClient}. It's also possible to provide an array of clients instead. In such case, connection errors will cause the wallet to automatically fallback on the next provider in the list.
+ * @property {number} [retries] - If set and if 'client' is a list of clients, the number of additional retry attempts after the initial call fails. Total attempts = `1 + retries`. For example, `retries: 3` with 4 providers will try each provider once before throwing. If `retries` exceeds the number of providers, the failover will loop back and retry already-failed providers in round-robin order. Default: 3.
  * @property {number} [priceCacheDurationMs=3600000] - Cache duration in milliseconds, defaults to 1 hour
  */
 
@@ -95,11 +98,33 @@ export class PricingClient {
 
 export class PricingProvider {
   /**
+   * @type {PricingClient}
+   */
+  client
+
+  /**
    * Creates a new PricingProvider instance
    * @param {PricingProviderConfig} config
    */
   constructor (config = {}) {
-    this.client = config.client
+    const { client, retries = 3 } = config
+
+    if (Array.isArray(client)) {
+      if (!client.length) {
+        throw new Error("The 'client' option cannot be set to an empty list.")
+      }
+
+      const failoverProvider = new FailoverProvider({ retries })
+
+      for (const entry of client) {
+        failoverProvider.addProvider(entry)
+      }
+
+      this.client = failoverProvider.initialize()
+    } else {
+      this.client = client
+    }
+
     this.priceCacheDurationMs = config.priceCacheDurationMs || 60 * 60 * 1000
 
     /** @type {Object<string, { lastPriceValue: number, lastPriceTimestamp: number }>} */
